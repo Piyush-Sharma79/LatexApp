@@ -1,7 +1,10 @@
 import streamlit as st
 import ollama
+import requests
 
 desiredModel = "falcon3:3b"
+
+OLLAMA_SERVER = "https://ollama.piyushsharmadev.site"
 
 st.title("Latex Formula Generator by Piyush")
 
@@ -9,19 +12,11 @@ SYSTEM_PROMPT = "You are a LaTeX generation model. The user will give you the na
 
 
 def generate_response(questionToAsk):
-    response = ollama.chat(
-        model=desiredModel,
-        messages=[
-            {
-                "role": "user",
-                "content": questionToAsk,
-            },
-        ],
+    response = requests.post(
+        f"{OLLAMA_SERVER}/api/generate",
+        json={"model": desiredModel, "messages": [{"role": "user", "content": questionToAsk}]},
     )
-    print(response)
-    # print a line break
-    print("\n")
-    content = response["message"]["content"]
+    content = response.json().get("message", {}).get("content", "Error: No response.")
 
     try:
         try:

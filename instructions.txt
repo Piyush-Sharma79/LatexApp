@@ -1,3 +1,4 @@
 so what we did we are just running app locally on localhost:8501 and then a cloudflare tunnel is running which is pionting to 8501 and running it on app.piyushsharmadev.site
 for that we created a dns record tunnelid.cfargotunnel.com
 to run the app first in the forlder run streamlit run app.py and in general run cloudflared tunnel run tunnelid this would run your app
+tunnelid=3cd16af1-9709-433e-bbe0-cad1f9465d41

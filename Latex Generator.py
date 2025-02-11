@@ -1,9 +1,21 @@
 import streamlit as st
 import ollama
 
+hide_streamlit_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        header {visibility: hidden;}
+        footer {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 desiredModel = "falcon3:3b"
 
 st.title("Latex Formula Generator")
+
+
+
 
 SYSTEM_PROMPT = "You are a LaTeX generation model. The user will give you the name or description of a formula. Provide only the LaTeX code that visualizes it. No text or explanation."
 
@@ -15,8 +27,8 @@ def generate_response(questionToAsk):
             {"role": "user", "content": questionToAsk},
         ],
     )
-    #print(response)
-    #print("\n")
+    print(response)
+    print("\n")
     content = response.get("message", {}).get("content", "").strip()
 
     if not content:
@@ -46,3 +58,20 @@ with st.form("my_form"):
 
     if submitted and text.strip():
         generate_response(text)
+#st.sidebar.
+st.markdown("""
+---
+🛠 **Developed by Piyush Sharma**
+📧  [eMAIL](mailto:sharma1945piyush@gmail.com)
+🌐  [Website](https://piyushsharmadev.site)
+""", unsafe_allow_html=True)
+
+st.markdown(
+    r"""
+    <style>
+    .stDeployButton {
+            visibility: hidden;
+        }
+    </style>
+    """, unsafe_allow_html=True
+)
